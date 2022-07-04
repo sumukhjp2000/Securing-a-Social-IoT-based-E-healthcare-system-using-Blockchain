@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "841428923997",
+    "project_id": "health-tracker-1d38a",
+    "storage_bucket": "health-tracker-1d38a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841428923997:android:f826f34eb47441a3387fb4",
+        "android_client_info": {
+          "package_name": "com.flutterflow.healthtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841428923997-armcoqgm44gu3edlhm9rpfeqmra46c8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAslou-JXy3H__cN6AFtBNQTDjpLtyUYf8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841428923997-armcoqgm44gu3edlhm9rpfeqmra46c8u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "841428923997-0l3fk52nsa13hcu2ul9tp5urp6ah0hjk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.healthtracker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841428923997:android:ee85315d68fc3cc8387fb4",
+        "android_client_info": {
+          "package_name": "com.sumukh.health_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841428923997-armcoqgm44gu3edlhm9rpfeqmra46c8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAslou-JXy3H__cN6AFtBNQTDjpLtyUYf8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841428923997-armcoqgm44gu3edlhm9rpfeqmra46c8u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "841428923997-0l3fk52nsa13hcu2ul9tp5urp6ah0hjk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.healthtracker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
