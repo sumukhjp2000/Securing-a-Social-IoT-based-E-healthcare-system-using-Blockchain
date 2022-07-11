@@ -175,8 +175,9 @@ Notes | Image
 **DIY ECG with 1 Op-Amp**: Those interested in building an ECG circuit from scratch may find my [DIY ECG with a Single Op-Amp](https://github.com/swharden/diyECG-1opAmp) (an LM-741) project interesting. | ![](graphics/1-opamp-circuit.jpg)
 # ------------------------------------------------------------------------------
 # MICROPROCESSORS USED:
-![](src/arduino.jpeg) 
-
+<p align="center">
+  <img src="https://microcontrollerslab.com/wp-content/uploads/2018/10/Arduino-Uno-pinout.jpg" width="50%"/>
+</p>
 <p align="center">
 	<img src="http://content.arduino.cc/brand/arduino-color.svg" width="50%" />
 </p>
