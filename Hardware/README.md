@@ -1,6 +1,6 @@
 Screenshot | Video Demonstration
 ---|---
-![](src/app%20screenshot.png) | [![Project Demonstration](src/thumbnail.jpeg)](https://drive.google.com/file/d/1ufttBUgB-Nxw8wYVwoq1Y9B6dKdsa9re/view?usp=drivesdk)
+![](src/app%20screenshot.png) | [![Project Demonstration](src/thumbnail.jpeg)](https://youtu.be/2zm26Cbve4A)
 
 
 
