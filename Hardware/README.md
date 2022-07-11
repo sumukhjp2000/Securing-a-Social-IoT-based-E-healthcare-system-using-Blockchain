@@ -175,6 +175,7 @@ Notes | Image
 **DIY ECG with 1 Op-Amp**: Those interested in building an ECG circuit from scratch may find my [DIY ECG with a Single Op-Amp](https://github.com/swharden/diyECG-1opAmp) (an LM-741) project interesting. | ![](graphics/1-opamp-circuit.jpg)
 # ------------------------------------------------------------------------------
 # MICROPROCESSORS USED:
+![](src/arduino.jpeg) 
 
 <p align="center">
 	<img src="http://content.arduino.cc/brand/arduino-color.svg" width="50%" />
@@ -275,6 +276,7 @@ Icon and about image designed by [ToDo](https://www.todo.to.it/)
 
 # *****************************************************************
 # ESP8266
+![](src/esp8266.png) 
 Documentation and help with the ESP8266 chip/boards/modules. 
 
 You can find the entire article [here](https://tttapa.github.io/ESP8266/Chap01%20-%20ESP8266.html), or you can just download it.
