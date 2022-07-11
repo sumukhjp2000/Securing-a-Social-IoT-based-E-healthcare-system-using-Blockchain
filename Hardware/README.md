@@ -111,6 +111,7 @@ desoldered and external 4.7k pullups to Vcc of the MCU must be added.
 
 
 # Arduino-AD8232|Sound Card ECG
+![logo](https://th.bing.com/th/id/OIP.RDTPKbLTMIE96s10yJukeAHaD2?pid=ImgDet&rs=1)
 The **Sound Card ECG** program provides a simple interface to view and measure ECG signals obtained through the sound card (using a line-in or microphone jack).
 
 ### Download
