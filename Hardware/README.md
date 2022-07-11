@@ -1,3 +1,12 @@
+Screenshot | Video Demonstration
+---|---
+![](Hardware/src/app screenshot.png) | [![Project Demonstration](Hardware/src/thumbnail)](https://youtu.be/sP_-f5nsOEo)
+
+
+
+
+
+
 # Arduino-MAX30100
 
 [![Build Status](https://travis-ci.org/oxullo/Arduino-MAX30100.svg?branch=master)](https://travis-ci.org/oxullo/Arduino-MAX30100)
@@ -152,7 +161,7 @@ This breakout board: http://www.sunrom.com/m/5337
 Has pullups on the Vdd (1.8V) line. To make it work, the three 4k7 pullups must be
 desoldered and external 4.7k pullups to Vcc of the MCU must be added.
 ```
-****************************************************************************************************************************************************
+*****************************************************************
 ```
 
 # Arduino-AD8232|Sound Card ECG
