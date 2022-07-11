@@ -3,157 +3,107 @@ Screenshot | Video Demonstration
 ![](src/app%20screenshot.png) | [![Project Demonstration](src/thumbnail.jpeg)](https://youtu.be/2zm26Cbve4A)
 
 # THE SENSORS WE HAVE Used:
-# Arduino-MAX30100
+# This code has been superseded
+# Please use our new [PulseSensor Playground Library](https://github.com/WorldFamousElectronics/PulseSensorPlayground)
 
-[![Build Status](https://travis-ci.org/oxullo/Arduino-MAX30100.svg?branch=master)](https://travis-ci.org/oxullo/Arduino-MAX30100)
 
-Arduino library for the Maxim Integrated MAX30100 oximetry / heart rate sensor.
+![logo](https://avatars0.githubusercontent.com/u/7002937?v=3&s=200)
 
-![MAX30100](http://www.mouser.com/images/microsites/Maxim_MAX30100.jpg)
+## Getting Advanced Code / <a href="http://www.pulsesensor.com">PulseSensor</a>  & <a href="http://arduino.cc/"> "Arduino"</a> 
+* Blinks LED on Pin 13 to a User's Live Heartbeat.   
+* "Fancy Fade Blink" an LED on Pin 5, to a User's Live HeartBeat.
+* Calculates User's BPM, Beat-Per-Minute. 
+* Calculates User's IBI, the Interval Between Beats.  
+* Serial.print's the Signal, BPM, and IBI.  Use this output for our <a href="https://github.com/WorldFamousElectronics/PulseSensor_Amped_Processing_Visualizer">Processing Visualizer App</a> , our <a href="https://itunes.apple.com/us/app/pulse-sensor/id974284569?ls=1&mt=12"> Pulse Sensor Mac App</a>, or your project!  
+* Tech Note:  Employ's Arduino's Interrupt, to keep "time", and calculate BPM and IBI.
 
-## Disclaimer
 
-The library is offered only for educational purposes and it is not meant for medical uses.
-Use it at your sole risk.
+## Screen Shot
+![ScreenShot](src/ScreenCapArduino.png) 
 
-## Notes
 
-Maxim integrated stopped the production of the MAX30100 in favor of MAX30101 and MAX30102.
-Therefore this library won't be seeing any further improvement, besides fixes.
+## Installing
+1. Click the `Clone or Download` button above and download the zip, or if you are a github user, clone this repo, or fork it! 
+2. Take the **PulseSensor_Amped_Arduino-master.zip** file, and move it to your **Documents/Arduino** folder.
+3. **Unzip** PulseSensor_Amped_Arduino-master.zip in your **Documents/Arduino** folder. **This properly installs your files.**
+4. Double-click on **PulseSensorAmped_Arduino_1.5.0.ino** ![filesys](pics/filesys.png)
 
-*IMPORTANT: when submitting issues, make sure to fill ALL the fields indicated in the template text of the issue. The issue will be marked as invalid and closed immediately otherwise.*
+	**Or,** 0pen project in **Arduino via *File > Sketchbook > PulseSensor_Amped_Arduino-Master > PulseSensorAmped_Arduino_1.5.0.ino**
+ ![sketchbook](src/ArduinoSketch.png)
 
-## Hardware
 
-This library has been tested with the MikroElektronika Heart rate click daughterboard:
+## Pulse Sensor Hook-up
+Arduino Pin   | PulseSensor Cable Color
+------------- | -------------
+RED           | 5V or 3V   
+BLACK         | GND (GROUND)
+PURPLE        | A0 (Analog Pin Zero)
 
-http://www.mikroe.com/click/heart-rate/
+![cablehookup](src/cablehookup.png)
 
-along with an Arduino UNO r3. Any Arduino supporting the Wire library should work.
 
-The only required connection to the sensor is the I2C bus (SDA, SCL lines, pulled up).
+## Variables to Note
+Variable Name     | What it does
+------------------| -------------
+Signal            | **Int** that holds raw Analog Input data on **Pin 0**, the PulseSensor's **Purple Cable**. It's updated every 2mS
+BPM               | **Int** that holds the **heart-rate value**, derived every beat, from averaging **previous 10 IBI values** 
+IBI               | **Int** that holds the **time interval between beats**
+Pulse             | **Boolean** that is **true when a heartbeat is sensed**. It's **false** other times.  It **controls LED Pin 13**.
+QS                | **Boolean** that is **true whenever Pulse is found and BPM** is updated. User must reset. 
 
-An example which shows a possible way to wire up the sensor is shown in
-[extras/arduino-wiring.pdf](extras/arduino-wiring.pdf)
 
-Note: The schematics above shows also how to wire up the interrupt line, which is
-currently not used by the library.
+## Working with other Apps via Serial.print
+This Arduino Sketch works with:
 
-### Pull-ups
+* Our **Processing Sketch** <a href="https://github.com/WorldFamousElectronics/PulseSensor_Amped_Processing_Visualizer"> "Processing Visualizer"</a>
+*  Our **Pulse Sensor Mac App** <a href="https://itunes.apple.com/us/app/pulse-sensor/id974284569?ls=1&mt=12"> "Pulse Sensor Mac App"</a>
+*  The **Arduino Serial Plotter**
 
-Since the I2C interface is clocked at 400kHz, make sure that the SDA/SCL lines are pulled
-up by 4,7kOhm or less resistors.
+Follow the links above to learn more about the Processing Visualizer and Mac App. This Read Me will cover how to view your pulse wave and other data with the Arduino Serial Plotter. There is a variable in the Pulse Sensor Amped Arduino Sketch that determines how the serial output is formatted. The variable is called `outputType`, and there are two options for setting this variable: `PROCESSING_VISUALIZER` and `SERIAL_PLOTTER`. By default, `outputType` is set to `SERIAL_PLOTTER`. 
 
-## Architecture
+![outputType](src/outputType.png)
 
-The library offers a low-level driver class, MAX30100.
-This component allows for low level communication with the device.
+If you want to use the Serial Plotter, upload the Sketch to your Arduino microcontroller, and then select `Tools > Serial Plotter`.
+![Select Serial Plotter](src/select-plotter.png)
 
-A rather simple but working implementation of the heart rate and SpO2 calculation
-can be found in the PulseOximeter class.
+When you turn on the Plotter, make sure that the baud rate is set to 115200. Make this adjustment with the lower right corner menu selector. You will see three traces in the Arduino Serial Plotter. The **red** trace is your pulse wave data from the `Signal` variable. The **yellow** trace is your `IBI`, or the time between each beat. The **blue** trace is your `BPM` or your Beats Per Minute. 
 
-This high level class sets up the sensor and data processing pipelines in order to
-offer a very simple interface to the data:
+![Serial Plotter Shot](src/plotter.png)
 
- * Sampling frequency set to 100Hz
- * 1600uS pulse width, full sampling 16bit dynamic
- * IR LED current set to 50mA
- * Heart-rate + SpO2 mode
+If you only want to see the pulse wave `Signal` data, then you can edit the Arduino Sketch. In the `AllSerialHandling.ino` tab, simply comment out the lines shown below by inserting `//` in the beginning of the line.
 
-The PulseOximeter class is not optimised for battery-based projects.
+![comment data](src/plot-pulse-only.png)
 
-## Examples
+Now, when you run the Serial Plotter, you will see a **blue** pulse waveform only!
 
-The included examples show how to use the PulseOximeter class:
+![plot pulse only](src/plot-of-pulse-only.png)
 
- * MAX30100_Minimal: a minimal example that dumps human-readable results via serial
- * MAX30100_Debug: used in conjunction with the Processing pde "rolling_graph" (extras folder), to show the sampled data at various processing stages
- * MAX30100_RawData: demonstrates how to access raw data from the sensor
- * MAX30100_Tester: this sketch helps to find out potential issues with the sensor
+## Timer Interrupt Notes or "Why did some of PWM Pins stop working ???"
+There is a tab in the Arduino code called `Timer_Interrupt_Notes`. This page describes how to set up the timed interrupt depending on which hardware you are using, and what other things you may want to do with your sketch. We are using a hardware timer on the micrcontroller to make sure that our Pulse Sensor samples are taken at a consistent rate. That makes our data extra scientific! Please read it carefully!
+
+PWM on pins 3 and 11 will not work when using this code, because we are using Timer 2!
+🤷‍♂️🤷‍♀️  
+
+Interrupt Setting | Disables PWM ON Arduino PINS 
+----------------- | -------------
+TIMER2            |  3 AND 11  
+
+
+
+
+## Pulse Sensor Preparation [ Garbage In ~ Garbage Out ]
+It's important to protect the Pulse Sensor from the oils and sweat that your fingertips and earlobes and other body parts make. That stuff can adversely affect the signal quality. Also, it's important to protect **you** from the electricity that makes the Pulse Sensor work! To this end, we have provided clear vinyl stickers that fit perfectly on the face of the Pulse Sensor. Peel one off, and press it firmly on the **front** side of your Pulse Sensor.
+![Stick](src/stick.jpg)
+![Picture](src/finger.jpg)
+![Picture](src/earclip.jpg)
 
 ## Troubleshooting
-
-Run the MAX30100_Tester example to inspect the state of your rig.
-When run with a properly connected sensor, it should print:
-
-```
-Initializing MAX30100..Success
-Enabling HR/SPO2 mode..done.
-Configuring LEDs biases to 50mA..done.
-Lowering the current to 7.6mA..done.
-Shutting down..done.
-Resuming normal operation..done.
-Sampling die temperature..done, temp=24.94C
-All test pass. Press any key to go into sampling loop mode
-```
-
-Pressing any key, a data stream with the raw values from the photodiode sampling red
-and infrared is presented.
-With no finger on the sensor, both values should be close to zero and jump up when
-a finger is positioned on top of the sensor.
+Having trouble making heads or tails of what is wrong?  
+Check your raw signal with this project:
+<a href="https://github.com/WorldFamousElectronics/PulseSensorStarterProject">WorldFamousElectronics/PulseSensorStarterProject</a> 
 
 
-Typical issues when attempting to run the examples:
-
-### I2C error or garbage data
-
-In particular when the tester fails with:
-
-```
-Initializing MAX30100..FAILED: I2C error
-```
-
-This is likely to be caused by an improper pullup setup for the I2C lines.
-Make sure to use 4,7kOhm resistors, checking if the breakout board in use is equipped
-with pullups.
-
-### Logic level compatibility
-
-If you're using a 5V-based microcontroller but the sensor breakout board pulls SDA and SCL up
-to 3.3V, you should ensure that its inputs are compatible with the 3.3V logic levels.
-An original Atmel ATMega328p considers anything above 3V as HIGH, so it might work well without
-level shifting hardware.
-
-Since the MAX30100 I2C pins maximum ratings aren't bound to Vdd, a cheap option to avoid
-level shifting is to simply pull SDA and SCL up to 5V instead of 3.3V.
-
-### Sketchy beat frequency readouts
-
-The beat detector uses the IR LED to track the heartbeat. The IR LED is biased
-by default at 50mA on all examples, excluding the Tester (which sets it to 7.6mA).
-This value is somehow critical and it must be experimented with.
-
-The current can be adjusted using PulseOximeter::setIRLedCurrent().
-Check the _MAX30100_Minimal_ example.
-
-### Advanced debugging
-
-Two tools are available for further inspection and error reporting:
-
-* extras/recorder: a python script that records a session that can be then analysed with the provided collection of jupyter notebooks
-* extras/rolling_graph: to be used in conjunction with _MAX30100_Debug_ example, it provides a visual feedback of the LED tracking and heartbeat detector
-
-Both tools have additional information on the README.md in their respective directories.
-
-## Tested devices
-
-* Arduino UNO r3, Mikroelektronika Heart rate click (https://shop.mikroe.com/heart-rate-click)
-
-This combination works without level shifting devices at 400kHz I2C clock rate.
-
-* Arduino UNO r3, MAX30100 custom board with 4.7kOhm pullups to 5V to SDA, SCL, INT
-
-As above, working at 400kHz
-
-* Sparkfun Arduino Pro 328p 8MHz 3.3V, Mikroelektronika Heart rate click
-
-Even if this combination works (MAX30100 communication), the slower clock speed fails to deliver
-the required performance deadlines for a 100Hz sampling.
-
-## Troubled breakouts
-
-This breakout board: http://www.sunrom.com/m/5337
-
+[![Alt text](https://github.com/WorldFamousElectronics/PulseSensorStarterProject/blob/master/video-play.png)](https://youtu.be/RbB8NSRa5X4)
 Has pullups on the Vdd (1.8V) line. To make it work, the three 4k7 pullups must be
 desoldered and external 4.7k pullups to Vcc of the MCU must be added.
 
