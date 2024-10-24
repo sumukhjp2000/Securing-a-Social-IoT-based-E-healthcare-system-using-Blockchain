@@ -1,4 +1,4 @@
-# Securing Social-IoT-based E-healthcare system using Blockchain
+# Securing Social-IoT-based E-healthcare system using Blockchain.
 
 Here's a video explaining the project: https://www.youtube.com/watch?v=2zm26Cbve4A
 
